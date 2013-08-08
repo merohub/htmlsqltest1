@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>Absinthe Dilution Faerie</title>
+        
+        <script src="js/cordova-2.4.0.js"></script>
+		<script src="js/jquery/jquery-1.9.1.min.js"></script>
+        
+		<link rel="stylesheet" href="js/jquery/jquery.mobile-1.3.1.min.css" />
+        <link rel="stylesheet" href="js/jquery/jquery.mobile.structure-1.3.1.min.css" />
+        <link rel="stylesheet" href="js/jquery/jquery.mobile.theme-1.3.1.min.css" />
+        <link rel="stylesheet" href="js/jquery/themes/Absinthe.min.css" />
+        <link rel="stylesheet" href="css/absinthe.css" />
+        
+        <script src="js/html5sql.js"></script>
+        <script src="http://localhost/html5sql/js/data.js"></script>
+        <script src="js/app.js"></script>
+        
+		<script src="js/jquery/jquery.mobile-1.3.1.min.js"></script>
+
+<script type="text/javascript">
+function onBodyLoad(){
+    document.addEventListener("deviceready", onDeviceReady, false);
+}
+
+function onDeviceReady(){
+    checkDB();
+}
+
+</script>
+
+	</head>
+    
+	<body onload="onBodyLoad()">
+        <!--<div id="container">-->
+    
+		<div data-role="page" id="start">
+			<div data-role="header" data-id="appHeader" data-position="fixed">
+				<h1>Absinthe Dilution Faerie</h1>
+			</div>
+            
+			<div data-role="content">
+				<img src="images/CafeAnim8_Absinthe.png" width="80%" style="padding-left:18%;padding-top:30px;" />
+                <p>"Absinthe Dilution Faerie" is a small application which calculates how much water one should temper a dose of absinthe with in accordance with the ABV percentage as laid out by Michael Meyers of The Wormwood Society.</p>
+                <p>While this application strives to provide solid information - there is always personal preference to account for.</p>
+                <p>À votre santé!</p>
+			</div>
+            
+            <div data-role="footer" data-id="appFooter" data-position="fixed">
+            	<div data-role="navbar">
+                    <ul>
+                        <li><a href="#dilute" class="dead-leaf">Dilute</a></li>
+                        <li><a href="#brands" class="dead-leaf">Brands</a></li>
+                        <li><a href="#about" class="dead-leaf">About</a></li>
+                    </ul>
+                </div>
+            </div>
+		</div>
+        
+        
+        
+        
+        
+        
+        
+		<div data-role="page" id="dilute">
+			<div data-role="header" data-id="appHeader" data-position="fixed">
+				<h1>Dilution Calculator</h1>
+			</div>
+            
+			<div data-role="content">
+            	<!--<img src="images/matrix.jpg" width="90%" style="padding-left:5%;padding-right:5%;" />
+                <hr />-->
+                <h2 id="absinthe-dilute-name">Absinthe</h2>
+                <hr />
+                <div class="ui-grid-a">
+                    <div class="ui-block-a"><label>Ounce(s) of Absinthe:</label></div>
+                    <div class="ui-block-b"><input type="number" id="absinthe-dilute-measure" value="1"/></div>
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a"><label>Absinthe % ABV</label></div>
+                    <div class="ui-block-b"><input type="number" id="absinthe-dilute-begin" value="68"/></div>
+                </div>
+                
+                <div class="ui-grid-a">
+                    <div class="ui-block-a"><label>Tempered % ABV</label></div>
+                    <div class="ui-block-b"><input type="number" id="absinthe-dilute-final" value="12" /></div>
+                </div>
+                
+                <input type="button" class="dead-leaf" value="Calculate" onClick="calculate();" />
+                
+                <h2 id="absinthe-dilute-calculation">&nbsp;</h2>
+			</div>
+            
+            <div data-role="footer" data-id="appFooter" data-position="fixed">
+            	<div data-role="navbar">
+                    <ul>
+                        <li><a href="#start" class="dead-leaf">Home</a></li>
+                        <li><a href="#brands" class="dead-leaf">Brands</a></li>
+                        <li><a href="#about" class="dead-leaf">About</a></li>
+                    </ul>
+                </div>
+            </div>
+		</div>
+        
+        
+        
+        
+        
+        
+        
+        
+		<div data-role="page" id="brands">
+			<div data-role="header" data-id="appHeader" data-position="inline">
+				<h1>Absinthe Brands</h1>
+            </div>
+           
+            <a data-role="button" width="100%" class="dead-leaf" href="#AddAbsinthe" style="border-radius:2px;margin-top:0;margin-botton:-4px;" data-rel="dialog" data-icon="add" data-transition="slidedown">Add an Absinthe</a>
+                
+			<div data-role="content">
+                <ul id="AbsintheBrands" class="ui-icon-alt" height="100%" data-split-icon="edit" data-theme="Absinthe" data-role="listview" data-autodividers="true" data-filter="true" data-inset="false"></ul>
+            </div>
+            
+            <div data-role="popup" id="ConfigAbsinthe" data-theme="a" data-overlay-theme="a">
+                <form>
+                    <div style="padding:10px 20px;">
+                        <a data-role="button" href="#UpdateAbsinthe" data-icon="edit" data-rel="dialog" data-transition="slidedown">Update Absinthe</a>
+                        <a data-role="button" href="#RemoveAbsinthe" data-icon="delete" data-rel="popup" data-position-to="window" data-transition="pop">Delete Absinthe</a>
+                    </div>
+                </form>
+            </div>
+            
+            <div data-role="popup" id="RemoveAbsinthe" data-theme="a" data-overlay-theme="a">
+                <form>
+                    <div style="padding:10px 20px;">
+                        <h3>Are you absolutely sure you'd like to remove this absinthe from the database?</h3>
+                        <a data-role="button" href="#" onclick="removeAbsinthe();" data-icon="delete">Delete</a>
+                        <a data-role="button" href="#" onclick="closeDeletionPopup();" data-icon="back">Cancel</a>
+                    </div>
+                </form>
+            </div>
+            
+            <div data-role="footer" data-id="appFooter" data-position="fixed">
+            	<div data-role="navbar">
+                    <ul>
+                        <li><a href="#start" class="dead-leaf">Home</a></li>
+                        <li><a href="#dilute" class="dead-leaf">Dilute</a></li>
+                        <li><a href="#about" class="dead-leaf">About</a></li>
+                    </ul>
+                </div>
+            </div>
+		</div>
+        
+        
+		<div data-role="page" id="about">
+			<div data-role="header" data-id="appHeader" data-position="fixed">
+				<h1>About this App</h1>
+			</div>
+			<div data-role="content">
+            	<p>We encourage all to visit The Wormwood Society; a non-profit educational organization dedicated to providing accurate information about absinthe.</p>
+           	  	<img src="images/WS_Logo_200px.png" width="40%" style="padding-left:30%;padding-right:30%;" />
+                <p>This application is a gift to mobile-inclined Absintheurs everywhere from Fractured Vision Media, LLC.</p>
+            	<img src="images/FVM_logo_2013.png" width="40%" style="padding-left:30%;padding-right:30%;" />
+			</div>
+            <div data-role="footer" data-id="appFooter" data-position="fixed">
+            	<div data-role="navbar">
+                    <ul>
+                        <li><a href="#start" class="dead-leaf">Home</a></li>
+                        <li><a href="#dilute" class="dead-leaf">Dilute</a></li>
+                        <li><a href="#brands" class="dead-leaf">Brands</a></li>
+                    </ul>
+                </div>
+            </div>
+		</div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            <div data-role="page" id="AddAbsinthe">
+                <div data-role="header" data-id="appHeader" data-position="fixed"></div>
+                <div data-role="content">
+                    <div style="padding:10px 20px;">
+                        <h3>Absinthe Brand Details</h3>
+                        <input type="text" id="absinthe-name-add" value="" placeholder="Absinthe Name" data-theme="a">
+                        <input type="number" id="absinthe-abv-add" value="" placeholder="ABV %" data-theme="a">
+                        <textarea cols="40" id="absinthe-notes-add" placeholder="Notes"></textarea>
+                        <a data-role="button" href="#brands" onclick="addAbsinthe();" data-icon="check">Add Absinthe</a>
+                        <a data-role="button" href="#brands" data-icon="back">Cancel</a>
+                    </div>
+                </div>
+                <div data-role="footer" data-id="appFooter" data-position="fixed"></div>
+            </div>
+            
+            <div data-role="page" id="UpdateAbsinthe">
+                <div data-role="header" data-id="appHeader" data-position="fixed"></div>
+                <div data-role="content">
+                    <div style="padding:10px 20px;">
+                        <h3>Absinthe Brand Details</h3>
+                        <input type="hidden" id="absinthe-id-update" value="">
+                        <input type="text" id="absinthe-name-update" value="" placeholder="Absinthe Name" data-theme="a">
+                        <input type="number" id="absinthe-abv-update" value="" placeholder="ABV %" data-theme="a">
+                        <textarea cols="40" id="absinthe-notes-update" placeholder="Notes"></textarea>
+                        <a data-role="button" href="#brands" onclick="updateAbsinthe();" data-icon="check">Update Absinthe</a>
+                        <a data-role="button" href="#brands" data-icon="back">Cancel</a>
+                    </div>
+                </div>
+                <div data-role="footer" data-id="appFooter" data-position="fixed"></div>
+            </div>
+        
+        
+        
+        
+        
+        <!--</div>-->
+        
+	</body>
+</html>

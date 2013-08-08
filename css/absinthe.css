@@ -1,0 +1,86 @@
+@font-face {
+    font-family: "Averia Serif Libre";
+    src: url("fonts/AveriaSerifLibre-Bold.ttf") format("truetype");
+}
+
+a {
+    color:#030 !important;
+}
+html {
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#FFFFa9),to(#d6d88a));
+    background-image: -webkit-linear-gradient(#FFFFa9,#d6d88a);
+    background-image: -moz-linear-gradient(#FFFFa9,#d6d88a);
+    background-image: -ms-linear-gradient(#FFFFa9,#d6d88a);
+    background-image: -o-linear-gradient(#FFFFa9,#d6d88a);
+    background-image: linear-gradient(#FFFFa9,#d6d88a);
+}
+body {
+    text-align: center;
+    background-color: #eff09d !important;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#FFFFa9),to(#d6d88a));
+    background-image: -webkit-linear-gradient(#FFFFa9,#d6d88a);
+    background-image: -moz-linear-gradient(#FFFFa9,#d6d88a);
+    background-image: -ms-linear-gradient(#FFFFa9,#d6d88a);
+    background-image: -o-linear-gradient(#FFFFa9,#d6d88a);
+    background-image: linear-gradient(#FFFFa9,#d6d88a);
+    margin: 0;
+}
+#container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.ui-page { -webkit-backface-visibility: hidden; }
+
+h1, h2, h3 {
+    font-family: "Averia Serif Libre";
+}
+img {
+    image-rendering: auto;
+}
+.ui-mobile .ui-page .ui-content {
+    background : none;
+    font-size: 0.9em;
+    border:none;
+}
+.ui-mobile .ui-page {
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#FFFFa9),to(#d6d88a));
+    background-image: -webkit-linear-gradient(#FFFFa9,#d6d88a);
+    background-image: -moz-linear-gradient(#FFFFa9,#d6d88a);
+    background-image: -ms-linear-gradient(#FFFFa9,#d6d88a);
+    background-image: -o-linear-gradient(#FFFFa9,#d6d88a);
+    background-image: linear-gradient(#FFFFa9,#d6d88a);
+}
+.ui-title {
+    font-family: "Averia Serif Libre";
+    font-size:1.6em !important;
+    margin:5% !important;
+}
+label {
+    text-align:left;
+    position:relative;
+    top:1em;
+}
+.spacer {
+    height:20px;
+}
+a {
+    border-radius: 4px;
+    text-decoration:none;
+}
+
+.dead-leaf {
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#f9e7cd),to(#e6ce8e));
+    background-image: -webkit-linear-gradient(#f9e7cd,#e6ce8e);
+    background-image: -moz-linear-gradient(#f9e7cd,#e6ce8e);
+    background-image: -ms-linear-gradient(#f9e7cd,#e6ce8e);
+    background-image: -o-linear-gradient(#f9e7cd,#e6ce8e);
+    background-image: linear-gradient(#f9e7cd,#e6ce8e);
+}​
+
+.ui-dialog-contain {
+    background-color:#333 !important;
+}
+
+.containing-element .ui-slider-switch { width: 9em }
+.ui-page { -webkit-backface-visibility: hidden; }
